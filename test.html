@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <!-- ///////////////////////////////////////////// -->
+    <!-- ARROW FUNCTION -->
+    <!-- function binh thuong -->
+    <script>
+        const logger = function(log){
+            console.log(log);
+        }
+
+        logger("meo...")
+    </script>
+
+    <!-- convert to Arrow function -->
+    <script>
+        const logger2 = (log) => {
+            console.log(log);
+        }
+
+        logger("meo...")
+    </script>
+
+    <!-- Object normal -->
+    <script>
+        const course = {
+            name: 'meomeo',
+            getName: function(){
+                return this;
+            }
+        };
+
+        console.log(course.getName());
+    </script>
+
+    <!-- Object ARROW FUNCTION -->
+    <script>
+        const course2 = {
+            name: 'meomeo',
+            getName: () => {
+                return this;
+            }
+        };
+
+        console.log(course.getName());
+    </script>
+
+    <!-- ////////////////////////////////////////// -->
+    <!-- Spread trong javascript ES6 -->
+    <!-- ...params => get all remaining elements  -->
+    <!-- hop nhat cac object, arr,... -->
+    <script>
+        function logger(...params){
+            console.log(params);
+        }
+
+        logger(1, 2, 3, 4);
+
+        // other example
+        // => bo ngoac, lay 2 arr
+
+        var arr1 = [1, 2, 3];
+        var arr2 = [4, 5, 6];
+        var arr3 = [...arr1, ...arr2];
+
+        console.log(arr3);
+
+        // other ex
+    </script>
+
+    <!-- ///////////////////////////////////////// -->
+    <!-- Destructuring trong javascript ES6 -->
+
+    <script>
+
+        var arr = ['1', '2', '3'];
+        var [a, b, c] = arr;    // lan luot a, b, c = 1, 2, 3
+        console.log(a, b, c);
+
+    </script>
+
+    <!-- ///////////////////////////////////////// -->
+    <!-- React.createElement() -->
+    <!-- DOMMMMMMMMMMM -->
+
+    <script>
+
+        const h1DOM = document.createElement('h1')
+        h1DOM.title = 'hello'
+        h1DOM.className = 'heading'
+        h1DOM.innerText = 'hello guys'
+        document.body.appendChild(h1DOM)
+
+        // React
+        const h1React = React.createElement(
+            'h1',
+            {title: 'hello', className: 'heading'},
+            'hello guys'
+        )
+    </script>
+
+    <div id = "root"></div>
+    <script>
+        const ulReact = React.createElement(
+            'ul',
+            {title: 'hello'},
+            React.createElement('li', null, 'a'),
+            React.createElement('li', null, 'b')
+        )
+
+        // get root element
+        const root = document.getElementById('root')
+
+        //Ract-DOM => render UI
+        ReactDOM.render(ulReact, root)
+    </script>
+
+    <!-- ////////////////////////////////////////// -->
+    <!-- React element types | React components -->
+
+    <div id="app"></div>
+
+    <script type = "text/babel">
+
+        // component
+        function Header(){
+            return (
+                <div className="header">Header</div>
+            )
+        }
+
+        const app = (
+            <div className = "wrapper">
+                <Header />
+            </div>
+        )
+
+        ReactDOM.render(app, document.getElementById('root'))
+
+        //other example
+
+        //PostItem.js
+        function PostItem(props){
+            return(
+                <div className="post_item">
+                    <h2>{props.title}</h2>
+                    <p>{props.description}</p>
+                </div>
+            )
+        }
+
+        // App.js
+        function App() {
+            return(
+                <div className = "wrapper">
+                    <PostItem
+                        title = "haha"
+                        description = "huwwm"
+                    />    
+                </div>
+            )
+        }
+
+        // other example //////////////////////
+
+        const courses = [
+            // element arr
+        ]
+
+        const CourseItem = props => (
+            <div>
+                <h2>{props.title}</h2>
+            </div>
+        )
+
+        function App() {
+            return (
+                <div id="wrapper">
+                    {courses.map(course => (
+                        <CourseItem
+                            key={course.id}
+                            title={course.title}
+                        />
+                    ))}
+                </div>
+            )
+        }
+
+        // other solution
+
+        // truyen thang tu object
+        const CourseItem2 = ({course}) => (
+            <div>
+                <h2>{course.title}</h2> 
+            </div>
+        )
+
+        function App() {
+            return (
+                <div id="wrapper">
+                    {courses.map(course => (
+                        <CourseItem
+                            key={course.id}
+                            course={course}
+                        />
+                    ))}
+                </div>
+            )
+        }
+    </script>
+    
+    <!-- DOM events ///////////////////////// -->
+
+    <script type = "text/babel">
+        function App() {
+            return (
+                <div>
+                    <button 
+                        onClick={(event) => console.log(event.target)}
+                    >
+                        click ik!
+                    </button>   
+                </div>
+            )
+        }
+    </script>
+    
+    <!-- Create Components /////////////////////////////// -->
+
+    <script>
+        const CourseItem3 = ({course, onClick}) => (
+            <div>
+                <h2 onClick={() => onClick(course)}> {course.title}</h2>
+                <p>{course.description}</p> 
+            </div>
+        )
+
+        function App() {
+
+            // useCallback
+            const handleClick = (course) => {
+                console.log(course.title)
+            }
+
+            return (
+                <div id="wrapper">
+                    {courses.map(course => (
+                        <CourseItem
+                            key={course.id}
+                            course={course}
+                            onClick={handleClick}
+                        />
+                    ))}
+                </div>
+            )
+        }
+    </script>
+
+    <!-- other example -->
+
+    <div id="root"></div>
+    <script type="text/babel">
+        const Form = {
+            Input() {
+                return <input />
+            },
+            Checkbox() {
+                return <input type="checkbox" />
+            }
+        }
+
+        function App() {
+            return (
+                <div id="wrapper">
+                    <Form.Checkbox />    
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+
+    <!-- /////////////////////////////////////////// -->
+    <!-- Children props & Render props? Làm việc với JSX -->
+
+    <!-- Rest/Spread props -->
+    <!-- ...inputProps => lay nhung cai con lai -->
+    <div id="root"></div>
+    <script type="text/babel">
+        function Input({label,...inputProps}){
+            return (
+                <div>
+                    <label>{label}</label>    
+                    <input {...inputProps} />
+                </div>
+            )
+        }
+
+        function App() {
+            return (
+                <div id="wrapper">
+                    <Input
+                        label="Full name"  
+                        type="radio"
+                        placeholder="Enter name..."
+                    />  
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+
+    <!-- //////////// -->
+    <!-- Children props -->
+
+    <script>
+        function Button({children}) {
+            return <button>{children}</button>
+        }
+
+        // bthg thi lm nhu sau:
+        // <Button title="click ik" />
+        function App() {
+            return (
+                <div id="wrapper">
+                    <Button>click ik</Button>
+                </div>
+            )
+        }
+    </script>
+
+</body>
+</html>
