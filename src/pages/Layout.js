@@ -1,4 +1,6 @@
-import { FileOutlined, PieChartOutlined, UserOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
+import { Outlet, Link } from "react-router-dom";
+
+import { FileOutlined, PieChartOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { useState } from 'react';
 const { Header, Content, Footer, Sider } = Layout;
@@ -10,10 +12,9 @@ function getItem(label, key, icon, children) {
     label,
   };
 }
-
 const items = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
+  getItem('Home', '1', <PieChartOutlined />),
+  getItem('Blogs', '2', <DesktopOutlined />),
   getItem('User', 'sub1', <UserOutlined />, [
     getItem('Tom', '3'),
     getItem('Bill', '4'),
@@ -23,7 +24,7 @@ const items = [
   getItem('Files', '9', <FileOutlined />),
 ];
 
-const App = () => {
+const Layout_comp = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -38,6 +39,7 @@ const App = () => {
         <div className="demo-logo-vertical" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
+
       <Layout>
         <Header
           style={{
@@ -68,16 +70,43 @@ const App = () => {
             Bill is a cat.
           </div>
         </Content>
+
         <Footer
           style={{
             textAlign: 'center',
           }}
         >
-          BK @hcmut.edu.vn
+          Ant Design ©2023 Created by Ant UED
         </Footer>
-      </Layout>
-    </Layout>
-  );
-};
 
-export default App;
+      </Layout>
+
+      <Outlet />
+    </Layout>
+  )
+};
+export default Layout_comp;
+
+// const Layout = () => {
+//   return (
+//     <>
+//       <nav>
+//         <ul>
+//           <li>
+//             <Link to="/">Home</Link>
+//           </li>
+//           <li>
+//             <Link to="/blogs">Blogs</Link>
+//           </li>
+//           <li>
+//             <Link to="/contact">Contact</Link>
+//           </li>
+//         </ul>
+//       </nav>
+
+//       <Outlet />
+//     </>
+//   )
+// };
+
+// export default Layout;

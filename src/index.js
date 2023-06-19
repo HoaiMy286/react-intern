@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
-import Content from './Content_useEffect';
-
-// import Main_layout from './component/Main_layout';
-// import Tab from './component/Tab';
-
+import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "antd/dist/reset.css"
 
-console.log(React);
+// import Layout_comp from './pages/Layout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Content />
+    <App />
+    {/* <Layout_comp /> */}
   </React.StrictMode>
 );
 
