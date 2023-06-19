@@ -1,0 +1,40 @@
+{
+    "products":[
+        {
+            "id": 1,
+            "name": "samsung 1",
+            "color": "black",
+            "price": 100,
+            "category": "mobile",
+            "brand": "samsung",
+            "photo": "https://i.pinimg.com/564x/a1/c5/3e/a1c53e19ae16964d354ff88423bb5f58.jpg"
+        },
+        {
+            "id": 2,
+            "name": "samsung 2",
+            "color": "white",
+            "price": 200,
+            "category": "mobile",
+            "brand": "samsung",
+            "photo": "https://i.pinimg.com/474x/c9/48/ee/c948ee3575874a05f09bafd784ad8cd7.jpg"
+        },
+        {
+            "id": 3,
+            "name": "samsung 3",
+            "color": "green",
+            "price": 300,
+            "category": "mobile",
+            "brand": "samsung",
+            "photo": "https://i.pinimg.com/474x/cd/a1/87/cda187693cc1070b8ef8894fc503ff2c.jpg"
+        },
+        {
+            "id": 4,
+            "name": "samsung 4",
+            "color": "black",
+            "price": 400,
+            "category": "mobile",
+            "brand": "samsung",
+            "photo": "https://i.pinimg.com/474x/57/34/d2/5734d2f00fbedec16d9fb1c6b602909d.jpg"
+        }
+    ]
+}
